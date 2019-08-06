@@ -1,5 +1,6 @@
 <?php 
 
+session_start();
 // formInscription.php
 $titrePage = 'Login';
 include 'includes/nav.php';
