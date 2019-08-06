@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 06 août 2019 à 16:28
+-- Généré le :  mar. 06 août 2019 à 16:39
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `accounts`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_id` int(11) NOT NULL,
+  `message_user` int(11) NOT NULL,
+  `message_time` bigint(20) NOT NULL,
+  `message_text` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -55,6 +68,12 @@ INSERT INTO `users` (`id_users`, `username`, `email`, `password`, `firstname`, `
 --
 
 --
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -63,6 +82,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `users`
