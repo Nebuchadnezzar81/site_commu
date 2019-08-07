@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 06 août 2019 à 16:28
+-- Généré le :  mar. 06 août 2019 à 17:09
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -25,11 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `datetime_post` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
-  `id_users` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(125) NOT NULL,
   `email` varchar(125) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -42,7 +55,7 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_users`, `username`, `email`, `password`, `firstname`, `name`, `phone`) VALUES
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`, `phone`) VALUES
 (12, 'Gollum', 'mon.precieux@anneau.fr', '$2y$10$DKvIgBeymLaoZRpnoUzjhOYbX55kBlEEVIP07u2exoGRoLdlbyn82', '', '', ''),
 (13, 'Sauron', 'sauron@malefique.fr', '$2y$10$AfdPKaK84/HsXKm8oAPZxewT2e0MmZBZh3eqCrlPEw.KA08TKtk9C', '', '', ''),
 (14, 'John', 'johnshepard@normandy.fr', '$2y$10$YUH/n8XHqSgqQ3BSnOXO2Or.2vHNgWZ6fe/cU65YNEIYONMBei.Dq', '', '', ''),
@@ -55,20 +68,32 @@ INSERT INTO `users` (`id_users`, `username`, `email`, `password`, `firstname`, `
 --
 
 --
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_users`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
+-- AUTO_INCREMENT pour la table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
