@@ -67,7 +67,7 @@ if(!empty($_POST)) {
 	<div class="module">
 		<form method="post">
 
-				<h1>Connection</h1>
+				<h1>Connexion</h1>
 
 			<?php if(isset($errors) && count($errors) > 0): ?>
 				<div class="alert alert-danger text-center">

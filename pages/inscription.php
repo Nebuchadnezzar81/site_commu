@@ -10,14 +10,6 @@ $errors = array(); // dans cette variable, je vais stocker mes erreurs
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
 
-if(empty($safe['password'])) {
-		$errors[] = 'ihre Papieren bitte !';
-	}
-	elseif(!verifPassword($safe['password']))
-	{
-		$errors[] = 'Le format du mot de passe est incorrect';
-	}
-
 // les variables superglobales sont définies par défaut dans PHP, elles sont forcément un tableau
 if(!empty($_POST)){
 
@@ -27,6 +19,15 @@ if(!empty($_POST)){
 	// Vérifie le bon format de mon email
 	if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
 		$errors[] = 'Votre adresse email est invalide';
+	}
+
+	if(empty($safe['password'])) {
+		$errors[] = 'Le mot de passe est requis';
+	}
+	
+	if(!verifPassword($safe['password']))
+	{
+		$errors[] = 'Le format du mot de passe est incorrect';
 	}
 
 	if(strlen($safe['password']) < 7){
