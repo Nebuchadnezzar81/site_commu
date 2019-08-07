@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 07 août 2019 à 10:34
+-- Généré le :  mer. 07 août 2019 à 10:42
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -48,6 +48,9 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `show_name` tinyint(1) NOT NULL,
+  `show_online` tinyint(1) NOT NULL,
+  `avatar` varchar(80) NOT NULL,
   `phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -55,13 +58,13 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`, `phone`) VALUES
-(12, 'Gollum', 'mon.precieux@anneau.fr', '$2y$10$DKvIgBeymLaoZRpnoUzjhOYbX55kBlEEVIP07u2exoGRoLdlbyn82', '', '', ''),
-(13, 'Sauron', 'sauron@malefique.fr', '$2y$10$AfdPKaK84/HsXKm8oAPZxewT2e0MmZBZh3eqCrlPEw.KA08TKtk9C', '', '', ''),
-(14, 'John', 'johnshepard@normandy.fr', '$2y$10$YUH/n8XHqSgqQ3BSnOXO2Or.2vHNgWZ6fe/cU65YNEIYONMBei.Dq', '', '', ''),
-(15, 'Licorne', 'licorne@mignone.fr', '$2y$10$wD1dWgFc3Yx.lU0O8OyiZ.LvTJSAYP91Z8lpxPpFySQVZarwfqf3u', '', '', ''),
-(16, 'leComique', 'mathi@camp.fr', '$2y$10$so8eBj89zb0A.XES4f79AOPhYFt7WMm88sF5OsvhU.CFNU6IAw0/6', 'Mathoeil', 'Capdecampagne', '0123456789'),
-(18, 'jplemmerdeur', 'simon.webforce3@gmail.com', '$2y$10$eY0asuHEqrZy5l/AAlke/OuX3Ae7GRJKJhmoMcMGkfvGrwBdJbyRq', 'Jean-Marie', 'Lepen', '0123456789');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`, `show_name`, `show_online`, `avatar`, `phone`) VALUES
+(12, 'Gollum', 'mon.precieux@anneau.fr', '$2y$10$DKvIgBeymLaoZRpnoUzjhOYbX55kBlEEVIP07u2exoGRoLdlbyn82', '', '', 0, 0, '', ''),
+(13, 'Sauron', 'sauron@malefique.fr', '$2y$10$AfdPKaK84/HsXKm8oAPZxewT2e0MmZBZh3eqCrlPEw.KA08TKtk9C', '', '', 0, 0, '', ''),
+(14, 'John', 'johnshepard@normandy.fr', '$2y$10$YUH/n8XHqSgqQ3BSnOXO2Or.2vHNgWZ6fe/cU65YNEIYONMBei.Dq', '', '', 0, 0, '', ''),
+(15, 'Licorne', 'licorne@mignone.fr', '$2y$10$wD1dWgFc3Yx.lU0O8OyiZ.LvTJSAYP91Z8lpxPpFySQVZarwfqf3u', '', '', 0, 0, '', ''),
+(16, 'leComique', 'mathi@camp.fr', '$2y$10$so8eBj89zb0A.XES4f79AOPhYFt7WMm88sF5OsvhU.CFNU6IAw0/6', 'Mathoeil', 'Capdecampagne', 0, 0, '', '0123456789'),
+(18, 'jplemmerdeur', 'simon.webforce3@gmail.com', '$2y$10$eY0asuHEqrZy5l/AAlke/OuX3Ae7GRJKJhmoMcMGkfvGrwBdJbyRq', 'Jean-Marie', 'Lepen', 0, 0, '', '0123456789');
 
 --
 -- Index pour les tables déchargées
