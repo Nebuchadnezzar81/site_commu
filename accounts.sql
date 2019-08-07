@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
-<<<<<<< HEAD
 -- Généré le :  mer. 07 août 2019 à 11:00
-=======
--- Généré le :  mer. 07 août 2019 à 10:42
->>>>>>> 2b7c1e8366765fd3de2d28f53eff9db7f7c2d4d8
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -68,12 +64,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`,
 (14, 'John', 'johnshepard@normandy.fr', '$2y$10$YUH/n8XHqSgqQ3BSnOXO2Or.2vHNgWZ6fe/cU65YNEIYONMBei.Dq', '', '', 0, 0, '', ''),
 (15, 'Licorne', 'licorne@mignone.fr', '$2y$10$wD1dWgFc3Yx.lU0O8OyiZ.LvTJSAYP91Z8lpxPpFySQVZarwfqf3u', '', '', 0, 0, '', ''),
 (16, 'leComique', 'mathi@camp.fr', '$2y$10$so8eBj89zb0A.XES4f79AOPhYFt7WMm88sF5OsvhU.CFNU6IAw0/6', 'Mathoeil', 'Capdecampagne', 0, 0, '', '0123456789'),
-<<<<<<< HEAD
 (18, 'jplemmerdeur', 'simon.webforce3@gmail.com', '$2y$10$eY0asuHEqrZy5l/AAlke/OuX3Ae7GRJKJhmoMcMGkfvGrwBdJbyRq', 'Jean-Marie', 'Lepen', 0, 0, '', '0123456789'),
 (19, 'MG31', 'mon@email.fr', '$2y$10$LjdbxLF4fWZ3HY3aLkxTwusnFyJf3w/CYgRAt79wQ/w9Vq7ZEHPcm', 'MMM', 'GGG', 0, 0, '', '0123456978');
-=======
-(18, 'jplemmerdeur', 'simon.webforce3@gmail.com', '$2y$10$eY0asuHEqrZy5l/AAlke/OuX3Ae7GRJKJhmoMcMGkfvGrwBdJbyRq', 'Jean-Marie', 'Lepen', 0, 0, '', '0123456789');
->>>>>>> 2b7c1e8366765fd3de2d28f53eff9db7f7c2d4d8
 
 --
 -- Index pour les tables déchargées
