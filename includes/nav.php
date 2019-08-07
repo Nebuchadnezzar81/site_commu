@@ -1,7 +1,7 @@
 	<ul class="nav justify-content-center">
 	  <li class="nav-item">
 
-	  <?php if (isset($_SESSION['auth'])): ?>
+	  <?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
 	  		<li class="m-2 badge badge-success text-wrap">Bonjour  <br><?= $_SESSION['username']
 		  					; ?>					
 		  	</li>

@@ -45,7 +45,7 @@ if(!empty($_POST)) {
 				$_SESSION['id_users'] = $users['id_users'];
 				$_SESSION['username'] = $users['username'];
 				$_SESSION['email'] = $users['email'];
-				$_SESSION['auth'] = 'ok';
+				$_SESSION['auth'] = true;
 				//securisation de la session
 				session_regenerate_id();
 
