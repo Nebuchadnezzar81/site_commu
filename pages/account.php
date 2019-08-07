@@ -5,6 +5,10 @@ $errors = array(); // dans cette variable, je vais stocker mes erreurs
 
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
+if(!verifPassword($safe['password']))
+	{
+		$errors[] = 'Le format du mot de passe est incorrect';
+	}
 
 // les variables superglobales sont définies par défaut dans PHP, elles sont forcément un tableau
 if(!empty($_POST)){
@@ -57,42 +61,42 @@ if(!empty($_POST)){
 		include 'includes/connexion.php';
 		
 
-		if(isset($_SESSION['id_users'])) {
+		if(isset($_SESSION['id'])) {
 
-			   $request = $pdo->prepare("SELECT * FROM users WHERE id_users = ?");
-			   $request->execute(array($_SESSION['id_users']));
+			   $request = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+			   $request->execute(array($_SESSION['id']));
 			   $user = $request->fetch();
 
 			   if(isset($_POST['newusername']) AND !empty($_POST['newusername']) AND $_POST['newusername'] != $user['newusername']) {
 
 			      $newusername = htmlspecialchars($_POST['newusername']);
-			      $insertpseudo = $pdo->prepare("UPDATE users SET username = ? WHERE id_users = ?");
-			      $insertpseudo->execute(array($newusername, $_SESSION['id_users']));
-			      header('Location: index.php?page=index?id_users='.$_SESSION['id_users']);
+			      $insertpseudo = $pdo->prepare("UPDATE users SET username = ? WHERE id = ?");
+			      $insertpseudo->execute(array($newusername, $_SESSION['id']));
+			      header('Location: index.php?page=index?id='.$_SESSION['id']);
 			   }
 
 			   if(isset($_POST['newname']) AND !empty($_POST['newname']) AND $_POST['newname'] != $user['newname']) {
 
 			      $newname = htmlspecialchars($_POST['newname']);
-			      $insertname = $pdo->prepare("UPDATE users SET name = ? WHERE id_users = ?");
-			      $insertname->execute(array($newname, $_SESSION['id_users']));
-			      header('Location: index.php?page=index?id_users='.$_SESSION['id_users']);
+			      $insertname = $pdo->prepare("UPDATE users SET name = ? WHERE id = ?");
+			      $insertname->execute(array($newname, $_SESSION['id']));
+			      header('Location: index.php?page=index?id='.$_SESSION['id']);
 			   }
 
 			   if(isset($_POST['newfirstname']) AND !empty($_POST['newfirstname']) AND $_POST['newfirstname'] != $user['newfirstname']) {
 
 			      $newfirstname = htmlspecialchars($_POST['newfirstname']);
-			      $insertfirstname = $pdo->prepare("UPDATE users SET firstname = ? WHERE id_users = ?");
-			      $insertfirstname->execute(array($newfirstname, $_SESSION['id_users']));
-			      header('Location: index.php?page=index?id_users='.$_SESSION['id_users']);
+			      $insertfirstname = $pdo->prepare("UPDATE users SET firstname = ? WHERE id = ?");
+			      $insertfirstname->execute(array($newfirstname, $_SESSION['id']));
+			      header('Location: index.php?page=index?id='.$_SESSION['id']);
 			   }
 
 			   if(isset($_POST['newemail']) AND !empty($_POST['newemail']) AND $_POST['newemail'] != $user['newemail']) {
 
 			      $newemail = htmlspecialchars($_POST['newemail']);
-			      $insertemail = $pdo->prepare("UPDATE users SET mail = ? WHERE id_users = ?");
-			      $insertemail->execute(array($newemail, $_SESSION['id_users']));
-			      header('Location: index.php?page=index?id_users='.$_SESSION['id_users']);
+			      $insertemail = $pdo->prepare("UPDATE users SET mail = ? WHERE id = ?");
+			      $insertemail->execute(array($newemail, $_SESSION['id']));
+			      header('Location: index.php?page=index?id='.$_SESSION['id']);
 			   }
 
 			   if(isset($_POST['newpassword']) AND !empty($_POST['newpassword']) AND isset($_POST['confirmnewpassword']) AND !empty($_POST['confirmnewpassword'])) {
@@ -102,10 +106,10 @@ if(!empty($_POST)){
 
 			     if($newpassword == $confirmnewpassword) {
 
-			         $insertmdp = $pdo->prepare("UPDATE users SET password = ? WHERE id_users = ?");
-			         $insertmdp->execute(array($newpassword, $_SESSION['id_users']));
+			         $insertmdp = $pdo->prepare("UPDATE users SET password = ? WHERE id = ?");
+			         $insertmdp->execute(array($newpassword, $_SESSION['id']));
 
-			         header('Location: index.php?page=index?id_users='.$_SESSION['id_users']);
+			         header('Location: index.php?page=index?id='.$_SESSION['id']);
 
 			      }
 			   }
