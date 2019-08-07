@@ -2,7 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php';
+require './vendor/autoload.php';
 
 $errors = array(); // dans cette variable, je vais stocker mes erreurs
 // $maxFileSize = 3 * 1000 * 1000; // Limite à 3 Mo
@@ -83,28 +83,28 @@ if(!empty($_POST)){
 
 		$mail = new PHPMailer;
 
-				// paramétrage du STMP
+/*				// paramétrage du STMP
 				$mail->STMPOptions = ['ssl' =>
 									  ['verify_peer'      => false,
 									  'verify_peer_name'  => false,
 									  'allow_self_signed' => true]
-									 ];
+									 ];*/
 
 				// $mail->SMTPDebug = 3; // mode debug si > 2
 				$mail->CharSet = 'UTF-8'; // charset utf-8
 				$mail->isSMTP(); // connection directe à un serveur SMTP
 				$mail->isHTML(true); // mail au format HTML
-				$mail->Host = 'smtp.gmail.com'; // serveur SMTP
+				$mail->Host = 'smtp.mailtrap.io'; // serveur SMTP
 				$mail->SMTPAuth = true; // serveur sécurisé
-				$mail->Port = 465; // port utilisé par le serveur
-				$mail->SMTPSecure = 'ssl'; // certificat ssl
-				$mail->Username = 'gsm3webforce3@gmail.com'; // login
-				$mail->Password = 'GSM3webforce3'; // mot de passe
+				$mail->Port = 2525; // port utilisé par le serveur
+				$mail->SMTPSecure = 'tls'; // certificat ssl
+				$mail->Username = 'ab04b23bd49458'; // login
+				$mail->Password = '9ec81e0d3a7d9e'; // mot de passe
 				$mail->AddAddress($safe['email']); // destinataire
 				// $mail->AddAddress('truc@muche.fr'); // autre destinataire
 				// $mail->AddCC('machin@bidule.fr'); // copie carbonne
 				// $mail->AddBCC('patron@societe.fr'); // copie cachée
-				$mail->SetFrom('gsm3webforce3@gmail.com', 'GSM3'); // expediteur
+				$mail->SetFrom('toto@toto.fr', 'GSM3'); // expediteur
 				$mail->Subject = 'Message de GSM3'; // sujet
 				// le corps du mail au format HTML
 				$mail->Body = '<html>
@@ -129,16 +129,10 @@ if(!empty($_POST)){
 								</body>
 							   </html>';
 
-				// pièces jointes
-				$mail->AddAttachment('images/book.jpg');
 				// accusé de réception
 				// $mail->AddCustomHeader('X-confirm-Reading-To: wf3toulouse@gmail.com');
 				// $mail->AddCustomHeader('Return-receipt-To: wf3toulouse@gmail.com');
 				// envoi
-				if ($mail->Send()) {
-					echo "<p class=my-5>Votre mail à bien été envoyé. Merci de nous avoir contacté</p>";
-				}
-				else echo "<p>Oups ".$mail->ErrorInfo . "</p>";
 					}
 
 
@@ -158,7 +152,7 @@ if(!empty($_POST)){
 							</div>
 						<?php elseif(!empty($_POST) && count($errors) == 0): // Fomulaire soumis sans erreur?>
 							<div class="alert alert-primary">
-								Félicitations, votre compte vient d'être créer avec succès
+								Félicitations, votre compte vient d'être créer avec succès, un email de confirmation vous a été envoyer
 							</div>	
 						<?php endif;?>
 				<h1>Création d'un Compte</h1>

@@ -19,7 +19,7 @@ else { $page = "accueil"; }
 <head>
     <meta charset="utf-8">
     <title><?= ucfirst($page) ?></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
     <div>
