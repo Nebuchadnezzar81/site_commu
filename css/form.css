@@ -13,6 +13,97 @@ h1 {
   color: white;
 }
 
+input[type="checkbox"] {
+
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 100000;
+  cursor: pointer;
+}
+
+.icon {
+
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 100001;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #37c0ff, #0097dd);
+  pointer-events: none;
+}
+
+.icon:before {
+
+  content: 'Close';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 700;
+  overflow-y: auto;
+}
+
+input[type="checkbox"]:checked ~ .icon:before {
+
+  content: 'Menu';
+}
+
+.menu {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  width: 250px;
+  height: 100vh;
+  background: #000;
+  transition: 0.5s;
+  z-index: 100000;
+}
+
+.menu li {
+
+  list-style: none;
+}
+
+.menu li a {
+
+  display: block;
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.5s;
+}
+
+.menu li a:hover {
+
+  transform: translateX(10px);
+  color: #0097dd;
+}
+
+input[type="checkbox"]:checked ~ ul {
+
+  left: -300px;
+}
+
+.badge {
+
+  line-height: 2.5em;
+}
+
 #registered {
     margin-top: 50px;
 }
@@ -32,7 +123,7 @@ img {
     margin-bottom: 20px;
 }
 
-.avatar {
+#avatar {
     margin: 10px 0 20px 0;
 }
 
@@ -87,6 +178,8 @@ body{
   background-color:#f0f0f0;
   font-family:helvetica;
   background: url('../images/citadelmasseffect-1564845666979-2309.jpg') no-repeat center top;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 .body-content{
@@ -97,7 +190,6 @@ body{
   margin-left:auto;
   margin-right:auto; 
   background: transparent;
-  padding-top: 5%;
 }
 
 select,

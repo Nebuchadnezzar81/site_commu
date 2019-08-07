@@ -29,7 +29,6 @@ else { $page = "accueil"; }
 <body>
     <div>
         <?php require 'includes/header.php'; ?>
-        <?php require 'includes/nav.php'; ?>
 
         <main>
             <?php require 'pages/'.$page.'.php'; ?>
