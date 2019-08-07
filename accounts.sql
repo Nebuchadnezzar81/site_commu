@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 06 août 2019 à 17:09
+-- Généré le :  mer. 07 août 2019 à 10:12
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -71,7 +71,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`,
 -- Index pour la table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `users`
@@ -94,6 +95,16 @@ ALTER TABLE `messages`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
