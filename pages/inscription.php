@@ -10,6 +10,14 @@ $errors = array(); // dans cette variable, je vais stocker mes erreurs
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
 
+if(empty($safe['password'])) {
+		$errors[] = 'ihre Papieren bitte !';
+	}
+	elseif(!verifPassword($safe['password']))
+	{
+		$errors[] = 'Le format du mot de passe est incorrect';
+	}
+
 // les variables superglobales sont définies par défaut dans PHP, elles sont forcément un tableau
 if(!empty($_POST)){
 
@@ -158,7 +166,7 @@ if(!empty($_POST)){
 				<h1>Création d'un Compte</h1>
 
 				<p>
-					<input type="text" name="name" placeholder="Votre Nom" id="name" minlength="2" >
+					<input type="text" name="name" placeholder="Votre Nom" id="name" minlength="2" value="<?php if(count($errors) > 0) { echo $safe['name']; } ?>" >
 				</p>
 				<p>
 					<input type="text" name="firstname" placeholder="Votre Prénom" id="firstname" minlength="2" >

@@ -2,7 +2,6 @@
 
 
 $errors = array(); // dans cette variable, je vais stocker mes erreurs
-// $maxFileSize = 3 * 1000 * 1000; // Limite à 3 Mo
 
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
@@ -132,7 +131,7 @@ if(!empty($_POST)){
 						<?php endif;?>
 				<h1>Mon Compte</h1>
 
-				<h2>Voici votre compte, vous pouvez modifier vos identifiants à tout moment</h2>
+				<p class="text-center">Voici votre compte, vous pouvez modifier vos identifiants à tout moment</p>
 
 				<p>
 					<input type="text" name="newname" placeholder="Votre Nom" id="newname" minlength="2" >

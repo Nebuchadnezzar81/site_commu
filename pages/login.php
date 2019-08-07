@@ -11,7 +11,7 @@ if(!empty($_POST)) {
 	$errors = [];
 
 	if(empty($safe['password'])) {
-		$errors[] = 'Ihre papieren bitte !';
+		$errors[] = 'ihre Papieren bitte !';
 	}
 	elseif(!verifPassword($safe['password']))
 	{
@@ -24,7 +24,7 @@ if(!empty($_POST)) {
 		//connexion BDD
 		include 'includes/connexion.php';
 		//requete
-		$rq = "SELECT id_users, username, password
+		$rq = "SELECT id, email, username, password
 					 FROM users
 					 WHERE email = :email";
 		//preparation
@@ -42,7 +42,7 @@ if(!empty($_POST)) {
 			if(password_verify($safe['password'], $users['password']))
 			{
 				//enregistrement de l'abonné dans la session
-				$_SESSION['id_users'] = $users['id_users'];
+				$_SESSION['id'] = $users['id'];
 				$_SESSION['username'] = $users['username'];
 				$_SESSION['email'] = $users['email'];
 				$_SESSION['auth'] = true;
@@ -50,6 +50,9 @@ if(!empty($_POST)) {
 				session_regenerate_id();
 
 				$message = "Youpeeeee";
+
+				header('Location: index.php');
+
 			}
 			else $message = 'mot de passe incorrect';
 		}

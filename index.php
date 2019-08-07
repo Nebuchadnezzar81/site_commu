@@ -19,6 +19,10 @@ else { $page = "accueil"; }
 <head>
     <meta charset="utf-8">
     <title><?= ucfirst($page) ?></title>
+    
+    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
@@ -33,6 +37,5 @@ else { $page = "accueil"; }
 
     <?php require 'includes/footer.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 </html>
