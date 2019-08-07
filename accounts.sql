@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 07 août 2019 à 11:00
+-- Généré le :  mer. 07 août 2019 à 12:45
 -- Version du serveur :  10.1.38-MariaDB
 -- Version de PHP :  7.1.28
 
@@ -38,6 +38,18 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(160) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -65,7 +77,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`,
 (15, 'Licorne', 'licorne@mignone.fr', '$2y$10$wD1dWgFc3Yx.lU0O8OyiZ.LvTJSAYP91Z8lpxPpFySQVZarwfqf3u', '', '', 0, 0, '', ''),
 (16, 'leComique', 'mathi@camp.fr', '$2y$10$so8eBj89zb0A.XES4f79AOPhYFt7WMm88sF5OsvhU.CFNU6IAw0/6', 'Mathoeil', 'Capdecampagne', 0, 0, '', '0123456789'),
 (18, 'jplemmerdeur', 'simon.webforce3@gmail.com', '$2y$10$eY0asuHEqrZy5l/AAlke/OuX3Ae7GRJKJhmoMcMGkfvGrwBdJbyRq', 'Jean-Marie', 'Lepen', 0, 0, '', '0123456789'),
-(19, 'MG31', 'mon@email.fr', '$2y$10$LjdbxLF4fWZ3HY3aLkxTwusnFyJf3w/CYgRAt79wQ/w9Vq7ZEHPcm', 'MMM', 'GGG', 0, 0, '', '0123456978');
+(19, 'MG31', 'mon@email.fr', '$2y$10$LjdbxLF4fWZ3HY3aLkxTwusnFyJf3w/CYgRAt79wQ/w9Vq7ZEHPcm', 'MMM', 'GGG', 0, 0, '', '0123456978'),
+(20, 'Stiou', 'mathieu.capdeville@gmail.com', '$2y$10$4eZkExwEUqTEnD4DbgmsFekneFxJJmlmSjeAdCHzawmOYs5N71ZGK', 'Mathieu', 'CAPDEVILLE', 0, 0, '', '0698765432');
 
 --
 -- Index pour les tables déchargées
@@ -77,6 +90,13 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `name`,
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`);
 
 --
 -- Index pour la table `users`
@@ -95,10 +115,16 @@ ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Contraintes pour les tables déchargées
