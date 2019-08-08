@@ -1,4 +1,4 @@
-<body>
+
 	<div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,.5); height: 150px;">
 
 		<ul class="nav justify-content-center" style="margin: -20px;">
@@ -23,10 +23,9 @@
 
 			<?php else: ?>
 
-			<li><a href="index.php?page=inscription">Inscription</a></li>
-			<li><a href="index.php?page=login">Connexion</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?page=inscription"><button type="button" class="btn btn-primary">Inscription</button></a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?page=login"><button type="button" class="btn btn-primary">Connexion</button></a></li>
 
 			<?php endif; ?>
 	</ul>
 	</div>
-</body>
