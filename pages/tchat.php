@@ -23,16 +23,27 @@
             <td>
                 <form id="msg-form" method="post" >
                     <fieldset>
-                        <!-- ajout automatique de l'username + user_id (en display none)-->
-                        <div id="user_id" style="display:none"><?php echo $_SESSION['id']; ?></div>
-                        <div id="username">Pseudo : <?php echo $_SESSION['username']; ?>
-                        <!-- <label for="username">Pseudo :</label>
-                        <input type="text" name="username" id="username" required />
-                        <div class="invalid-feedback">
-                            Veuillez écrire un pseudo.
-                        </div> -->
-                         <!-- Pour ajouter le pseudo automatiquement avec BDD
-                        <a name="post"></a>-->
+                        <div id="user_id" style="display:none">
+                            <?php 
+                                if(isset($_SESSION['id']))
+                                {
+                                echo $_SESSION['id'];
+                                }
+                                else echo 'Vous devez être connecté pour envoyer un message';   
+                            ?>       
+                        </div>
+                        <div id="pseudo">Pseudo : 
+                            <span id="username">
+                            <?php 
+                                if(isset($_SESSION['id']))
+                                {
+                                echo $_SESSION['username'];
+                                }
+                                else echo 'Vous devez être connecté pour envoyer un message'; 
+
+                            ?>
+                            </span>
+                        
                         <br><br> 
                        
                        <!--  Zone de texte -->
@@ -52,14 +63,14 @@
                         </div>
                         <br>
                         
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <p>
                                 <strong>
                                     Cochez pour envoyer
                                 </strong>
                             </p>
                             <input class="form-check-input" type="checkbox" id="blankCheckbox" value="return" aria-label="...">
-                        </div>
+                        </div> -->
                     </fieldset> 
                 </form>
                 <div id="responsePost" style="display:none"></div>
@@ -84,8 +95,16 @@
             <!-- colonne avec les membres connectés au chat -->
             <td valign="top" id="users-td">
                 <div id="users">
-                    <ul>Membres connectés :
-                        <li><?php echo $_SESSION['username']; ?><em> - Vous-même</em></li>
+                    <ul>Membres connecté·e·s :
+                        <li><em>
+                            <?php 
+                                if(isset($_SESSION['id']))
+                                {
+                                echo $_SESSION['username'];
+                                }
+                                else echo '?'; 
+                            ?>
+                        </em></li>
                         <li>Marion</li>
                         <li>Gaelle</li>
                         <li>Simon</li>
