@@ -29,6 +29,7 @@ $q = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
 				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
 			<li><a href="index.php?page=dashboard">Mon Compte</a></li>
+			<li><a href="index.php?page=tchat">Mini-tchat</a></li>
 			<li><a href="#">Modifier Identifiants</a></li>
 			<li><a href="index.php?page=goodbye">Deconnexion</a></li>
 			<li><a href="index.php?page=login">Changer d'utilisateur</a></li>
