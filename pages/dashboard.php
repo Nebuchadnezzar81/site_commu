@@ -87,25 +87,62 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 		}
 		elseif($post['action'] == 'user-pwd-form') {
 
+			$pwd_errors = [];
+
+			if(empty($post['pwd']) || empty($post['new_pwd']) || empty($post['new_pwd_confirm'])) {
+				$pwd_errors[] = 'Tous les champs doivent être renseignés';
+			}
+			elseif(!verifPassword($post['pwd']) || !verifPassword($post['new_pwd'])) {
+				$pwd_errors[] = 'Les mots de passe doivent comporter 8 caractères, un nombre et une majuscule';
+			}
+			elseif($post['new_pwd'] != $post['new_pwd_confirm']) {
+				$pwd_errors[] = 'Le nouveau mot de passe doit être identique à la confirmation de mot de passe';
+			}
+
+
+
+			if(count($pwd_errors) === 0) {
+
+				// Vérif mot de passe existe
+				$q = $pdo->prepare('SELECT password FROM users WHERE id = :id');
+				$q->bindValue(':id', $_SESSION['id']);
+				$q->execute();
+				$hashed_pwd = $q->fetchColumn();
+
+				if(password_verify($post['pwd'], $hashed_pwd)) {
+
+					$new_pwd_hash = password_hash($post['new_pwd'], PASSWORD_DEFAULT);
+
+					$q = $pdo->prepare('UPDATE users SET password = :password WHERE id = :id');
+
+					$params = array(
+						':password' => $new_pwd_hash,
+						':id' => $_SESSION['id']
+					);
+
+					if($q->execute($params)) {
+						$pwd_success = true;
+					}
+					else
+					{
+						$pwd_errors[] = 'Une erreur est servenue lors de la mise à jour du mot de passe';
+					}
+				}
+				else {
+					$pwd_errors[] = 'Le mot de passe est incorrect';
+				}
+
+			}
+
 
 
 
 
 		}
 		// elseif($post['action'] == 'check-form') {
-
-
-
-
 		// }
 		// elseif($post['action'] == 'color-form') {
-
-
-
-
 		// }
-
-
 	}
 
 
@@ -118,15 +155,6 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 
 }
 else { header('Location: index.php'); }
-// avatar
-
-// formulaire edition des données
-
-// Couleur préférée
-
-
-// Checkbox affichage du nom
-// Checkbox présence en ligne
 
 ?>
 <div id="dash" class="container">
@@ -163,6 +191,11 @@ else { header('Location: index.php'); }
 
 	<h3>Réinitialiser mon mot de passe</h3>
 	<form method="post" id="user-pwd-form">
+		<?php if(isset($pwd_success) && $pwd_success): ?>
+			<div class="alert alert-success">Le mot de passe a été modifié avec succès</div>
+		<?php elseif(isset($pwd_errors) && count($pwd_errors) > 0): ?>
+			<div class="alert alert-danger"><?=implode('<br>', $pwd_errors); ?></div>
+		<?php endif; ?>
 		<input type="hidden" name="action" value="user-pwd-form">
 		<div>
 			<label for="pwd">Mot de passe actuel : </label>
@@ -239,25 +272,25 @@ else { header('Location: index.php'); }
 
 		});
 
-		$('#user-pwd-form').submit(function(e) {
+		// $('#user-pwd-form').submit(function(e) {
 
-			e.preventDefault();
+		// 	e.preventDefault();
 
-			console.log('submitted');
+		// 	console.log('submitted');
 
-			$.ajax({
-				url: 'php/reset_pwd.php',
-				method: 'POST',
-				data: $(this).serialize(),
+		// 	$.ajax({
+		// 		url: 'php/reset_pwd.php',
+		// 		method: 'POST',
+		// 		data: $(this).serialize(),
 
-				success: function(result) {
-					console.log(result);
-				},
-				error: function() {
-					console.log('ajax error');
-				}
-			});
-		});
+		// 		success: function(result) {
+		// 			console.log(result);
+		// 		},
+		// 		error: function() {
+		// 			console.log('ajax error');
+		// 		}
+		// 	});
+		// });
 	});
 
 </script>
