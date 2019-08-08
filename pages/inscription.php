@@ -7,12 +7,7 @@ require './vendor/autoload.php';
 $errors = array(); // dans cette variable, je vais stocker mes erreurs
 // $maxFileSize = 3 * 1000 * 1000; // Limite à 3 Mo
 
-// email déjà dans la table ?
-$rqVerif = "SELECT COUNT(*) FROM users WHERE email = :email";
-$stmtVerif = $pdo->prepare($rqVerif);
-$param1 = [':email' => $safe['email']];
-$stmtVerif->execute($param1);
-$exist = $stmtVerif->fetchColumn();
+
 
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
@@ -29,10 +24,20 @@ if(!empty($_POST)){
 	if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
 		$errors[] = 'Votre adresse email est invalide';
 	}
+	else {
+		// email déjà dans la table ?
+		$rqVerif = "SELECT COUNT(*) FROM users WHERE email = :email";
+		$stmtVerif = $pdo->prepare($rqVerif);
+		$param1 = [':email' => $safe['email']];
+		$stmtVerif->execute($param1);
 
-	if(!$exist) {
+		if($stmtVerif->fetchColumn()) {
 		$errors[] = 'Email déjà utilisé';
 	}
+
+	}
+
+	
 
 	if(empty($safe['password'])) {
 		$errors[] = 'Le mot de passe est requis';

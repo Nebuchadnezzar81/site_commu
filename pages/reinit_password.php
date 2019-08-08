@@ -27,7 +27,7 @@ if(!empty($_POST) && isset($_GET['token'])) {
 		if($email = $request1->fetchColumn()) {
 			$request2 = $pdo->prepare('UPDATE users SET password = :password WHERE email = :email');
 			$paramsInsert2 = [
-				':password'  => password_hash($safe['password'],
+				':password'  => password_hash($safe['pwd'],
       			PASSWORD_DEFAULT),
 				':email' => $email
 			];
