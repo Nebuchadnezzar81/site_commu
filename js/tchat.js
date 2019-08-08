@@ -17,7 +17,7 @@ $(document).ready(function(){
 						'<div class="message">'+
 							'<div>'+json[i].username+' ( '+ json[i].datetime_post + ' ) </div>' + 
 							'<div>' + json[i].message + '</div>' +
-							'<button data-id="'+json[i].id+'">Supprimer</button>' +
+							'<button class="btn-delete" data-id="'+json[i].id+'">Supprimer</button>' +
 						'</div>'
 					);
 				}
