@@ -119,7 +119,7 @@
                                 else echo '?'; 
                             ?>
                         </em></li>
-                        <li>Martin - <em>TeamLeader</li>
+                        <li>Martin </li>
                         <li>Marion</li>
                         <li>Gaelle</li>
                         <li>Simon</li>

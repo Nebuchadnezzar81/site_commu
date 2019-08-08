@@ -1,6 +1,6 @@
 <?php
 session_start() ;
-require_once '../includes/connexion.php'; //Attention, fichier absent
+require_once '../includes/connexion.php'; 
 
 $safe = array_map('strip_tags', $_POST);
 $errors = [];
