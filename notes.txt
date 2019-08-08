@@ -1,0 +1,3 @@
+balise body autour du header ?
+lien "modifier identifiants"
+ajouter avatar dans le nav
