@@ -1,4 +1,4 @@
-<body>
+
 	<div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,.5); height: 150px;">
 
 		<ul class="nav justify-content-center" style="margin: -20px;">
@@ -16,6 +16,9 @@
 		<?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
 
 			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
+			<figure class="dash-avatar">
+				<img src="<?php 'uploads/avatars/'.$user['avatar']; ?>">
+			</figure>
 			<li><a href="index.php?page=dashboard">Mon Compte</a></li>
 			<li><a href="#">Modifier Identifiants</a></li>
 			<li><a href="index.php?page=goodbye">Deconnexion</a></li>
@@ -29,4 +32,3 @@
 			<?php endif; ?>
 	</ul>
 	</div>
-</body>

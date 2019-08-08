@@ -1,6 +1,6 @@
 <h1>Accueil</h1>
 
-<?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
+		<?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
 		
 			<h2 class="text-center">Bonjour <?= $_SESSION['username']; ?></h2>
 
@@ -14,4 +14,3 @@
 			</symbol>
 			<use xlink:href="#text"></use>
 		</svg>
-	

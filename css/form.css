@@ -132,6 +132,7 @@ input[type="checkbox"]:checked ~ ul {
 .badge {
 
   line-height: 2.5em;
+  background-image: linear-gradient(to bottom, #37c0ff, #0097dd);
 }
 
 #registered {

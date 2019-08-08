@@ -84,6 +84,9 @@ if(!empty($_POST)) {
 			<p>
 				<input type="submit" name="submit" value="Se Connecter" id="button" class="btn btn-block btn-primary">
 			</p>
+			<p class="badge badge-pill badge-primary" style="margin-left: 150px;">
+				<a href="lost-password.php" class=" text-decoration-none text-white">Mot de passe perdu ?</a>
+			</p>
 		</form>
 	</div>
 </div>
