@@ -49,7 +49,15 @@
                        <!--  Zone de texte -->
                         <label for="message">Message :</label>
                         <br>
-                        <textarea name="message" id="message" required></textarea>
+                            <?php 
+                                if(!isset($_SESSION['id']))
+                                {
+                                echo '<textarea readonly>Vous devez être connecté pour envoyer un message</textarea>'; 
+                                }
+                                else echo'<textarea name="message" id="message" required></textarea>';
+
+                            ?>
+                        
                         <div class="invalid-feedback">
                             Veuillez écrire un message.
                         </div>
@@ -58,8 +66,14 @@
                         
                        <!--  Boutons -->
                         <div>
+                            <?php 
+                                if(isset($_SESSION['id']))
+                                {
+                                echo '<input type="submit" name="submit" value="Envoyez votre message !" id="msg-form" class="button"/>'; 
+                                }
+                            ?>
                             <input type="reset" name="reset" value="Annuler" id="annuler" class="button"/>
-                            <input type="submit" name="submit" value="Envoyez votre message !" id="msg-form" class="button"/>
+                            <!-- <input type="submit" name="submit" value="Envoyez votre message !" id="msg-form" class="button"/> -->
                         </div>
                         <br>
                         
@@ -105,7 +119,7 @@
                                 else echo '?'; 
                             ?>
                         </em></li>
-                        <li>Martin - <em>TeamLeader</em></li>
+                        <li>Martin - <em>TeamLeader</li>
                         <li>Marion</li>
                         <li>Gaelle</li>
                         <li>Simon</li>
