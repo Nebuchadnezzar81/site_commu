@@ -17,7 +17,7 @@ $(document).ready(function(){
 						'<div class="message">'+
 							'<div>'+json[i].username+' ( '+ json[i].datetime_post + ' ) </div>' + 
 							'<div>' + json[i].message + '</div>' +
-							'<button data-id="'+json[i].id+'">Supprimer</button>' +
+							'<button class="btn_delete" data-id="'+json[i].id+'">Supprimer</button>' +
 						'</div>'
 					);
 				}
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 
 		}); //fin ajax
-	}
+	}//fin fonction
 	
 	//clic sur le bouton
 	$('#msg-form').submit(function(e){
@@ -83,6 +83,24 @@ $(document).ready(function(){
 
 
 	//bouton delete
+	// $('.btn_delete').click(function(e){
+
+	// 	$(this).attr('data-id').remove();
+
+
+
+
+
+	// })
+
+
+	//suppression du bouton au bout de 5 min
+	// function supBtn() {
+
+
+	// }
+
+	//var intSupBtn = setInterval(supBtn, 300000);
 
 	// $('#msg-form').reset(function(e){
 
