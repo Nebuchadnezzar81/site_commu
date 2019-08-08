@@ -15,7 +15,7 @@ $maxFileSize = 3 * 1000 * 1000; // Limite à 3 Mo
 if(!empty($_SESSION) && $_SESSION['auth']) {
 
 
-	// Changement d'avatar
+// Changement d'avatar
 	if(!empty($_FILES)) {
 
 		$av_errors = [];
@@ -62,6 +62,7 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 
 				if($q->execute($params)) {
 					$av_success = true;
+					header('Location: index.php?page=dashboard');
 				}
 				else {
 					$av_errors[] = 'Votre avatar n\'a pas pu être ajouté à la base de données';
@@ -78,13 +79,11 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 
 		$post = array_map('trim', array_map('strip_tags', $_POST));
 
-
 		if($post['action'] == 'user-infos-form') {
-
-
-
-
 		}
+
+
+// Changement de mot de passe
 		elseif($post['action'] == 'user-pwd-form') {
 
 			$pwd_errors = [];
@@ -98,8 +97,6 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 			elseif($post['new_pwd'] != $post['new_pwd_confirm']) {
 				$pwd_errors[] = 'Le nouveau mot de passe doit être identique à la confirmation de mot de passe';
 			}
-
-
 
 			if(count($pwd_errors) === 0) {
 
@@ -131,21 +128,13 @@ if(!empty($_SESSION) && $_SESSION['auth']) {
 				else {
 					$pwd_errors[] = 'Le mot de passe est incorrect';
 				}
-
 			}
-
-
-
-
-
 		}
 		// elseif($post['action'] == 'check-form') {
 		// }
 		// elseif($post['action'] == 'color-form') {
 		// }
 	}
-
-
 
 	// Récupération données users
 	$q = $pdo->prepare('SELECT * FROM users WHERE id = :id');
@@ -182,8 +171,8 @@ else { header('Location: index.php'); }
 		<div class="dash-pseudo">
 			<!-- <label for="email">Email : </label><input type="text" name="email" value="<?= $user['email'] ?? ''; ?>" disabled>	 -->
 			<label for="username">Pseudo : </label><input type="text" name="username" value="<?= $user['username'] ?? ''; ?>">	
-			<label for="firstname">Prénom : </label><input type="text" name="firstname" value="<?= $user['firstname'] ?? ''; ?>">	
 			<label for="name">Nom : </label><input type="text" name="name" value="<?= $user['name'] ?? ''; ?>">	
+			<label for="firstname">Prénom : </label><input type="text" name="firstname" value="<?= $user['firstname'] ?? ''; ?>">	
 		</div>
 		<div class="dash-name">
 		</div>
@@ -251,14 +240,8 @@ else { header('Location: index.php'); }
 		});
 
 
-		$('#user-pwd-form input[type="submit"]').click(function() {
-			console.log('clicked');
-		});
 
-
-		// alert('test');
-
-
+		// AJAX Change Profile
 		$('#user-infos-form input').on({
 
 			focus: function(e) {
@@ -266,7 +249,36 @@ else { header('Location: index.php'); }
 			},
 
 			change: function(e) {
-				$(this).css('box-shadow', '0 0 10px lime');
+
+				var inp = $(this);
+
+				// alert(inp.attr('name'));
+
+				$.ajax({
+					url: 'php/update_profile.php',
+					method: 'POST',
+					data: {
+						col: inp.attr('name'),
+						val: inp.val()
+					},
+
+					success: function(val) {
+						console.log(val);
+						inp.val(val);
+						$('#user-pseudo').text(val);
+
+
+						inp.css('box-shadow', '0 0 10px lime');
+					},
+					error: function() {
+						console.log('ajax error');
+					}
+				});
+
+
+				
+
+
 				// $(this).animate({ box-shadow: '0 0 10px red'}, 5000);
 			}
 
@@ -278,18 +290,7 @@ else { header('Location: index.php'); }
 
 		// 	console.log('submitted');
 
-		// 	$.ajax({
-		// 		url: 'php/reset_pwd.php',
-		// 		method: 'POST',
-		// 		data: $(this).serialize(),
-
-		// 		success: function(result) {
-		// 			console.log(result);
-		// 		},
-		// 		error: function() {
-		// 			console.log('ajax error');
-		// 		}
-		// 	});
+		// 	
 		// });
 	});
 

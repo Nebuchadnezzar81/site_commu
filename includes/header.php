@@ -2,7 +2,7 @@
 
 		<ul class="nav justify-content-center" style="margin: -20px;">
 
-			<li class="nav-item"><a class="nav-link" href="index.php"><button type="button" class="btn btn-primary">Acceuil</button></a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php"><button type="button" class="btn btn-primary">Accueil</button></a></li>
 			<li class="m-3"> | </li>
 			<li class="nav-item"><a class="nav-link" href="index.php?page=contact"><button type="button" class="btn btn-primary">Contact</button></a></li>
 
@@ -15,13 +15,13 @@
 		<?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
 
 			<?php
-						$rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
-				 $rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
-				 $rq->execute();
-				 $user = $rq->fetch();
+				$rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
+				$rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
+				$rq->execute();
+				$user = $rq->fetch();
 			?>
 
-			<li class="m-2 badge badge-success text-wrap d-block">Bonjour <?= $_SESSION['username']; ?></li>
+			<li class="m-2 badge badge-success text-wrap d-block">Bonjour <?= '<span id="user-pseudo">'.$_SESSION['username'].'</span>'; ?></li>
 			<figure class="dash-avatar">
 				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
