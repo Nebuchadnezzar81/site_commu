@@ -5,7 +5,11 @@ require_once '../includes/connexion.php';
 $safe = array_map('strip_tags', $_POST);
 
 
-$q = $pdo->prepare("DELETE FROM messages WHERE id ='$_POST['id']'")->execute(array($safe['id']));
+$q = $pdo->prepare("DELETE FROM messages WHERE id ='$_POST['id']'")
+
+
+
+->execute(array($safe['id']));
 //sauf que l'id du message n'est pas du tout dans le post, il est dans la table messages
 
 
