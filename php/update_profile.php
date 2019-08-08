@@ -18,7 +18,7 @@ if(!empty($_POST) && isset($_SESSION['id'])) {
 
 	if($q->execute($params)) {
 
-		$_SESSION['username'] = $post['val']; 
+		$_SESSION[$post['col']] = $post['val']; 
 		echo $post['val'];
 	}
 }

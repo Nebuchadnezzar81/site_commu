@@ -254,6 +254,8 @@ else { header('Location: index.php'); }
 
 				// alert(inp.attr('name'));
 
+				console.log('to send : '+ inp.attr('name') + ' / ' + inp.val());
+
 				$.ajax({
 					url: 'php/update_profile.php',
 					method: 'POST',
@@ -265,10 +267,13 @@ else { header('Location: index.php'); }
 					success: function(val) {
 						console.log(val);
 						inp.val(val);
-						$('#user-pseudo').text(val);
 
+						if(inp.attr('name') == 'username') {
+							$('#user-pseudo').text(val);
+						}
 
-						inp.css('box-shadow', '0 0 10px lime');
+						inp.css('box-shadow', '0 0 10px 0 lime');
+						// inp.css('box-shadow', '0 0 10px 0 #333').fadeOut(10000);
 					},
 					error: function() {
 						console.log('ajax error');
