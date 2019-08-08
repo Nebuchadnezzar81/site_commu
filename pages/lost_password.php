@@ -2,10 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '../vendor/autoload.php';
-
-// connexion BDD
-include '../includes/connexion.php';
+require 'vendor/autoload.php';
 
 $errors = array();
 
@@ -70,14 +67,14 @@ if(!empty($_POST)){
 								</style>
 							</head>
 							<body>
-								<h1>Bonjour,</h1>
-								<p>Vous avez indiqué que vous avez perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
-								<p><a href="localhost/site_commu/pages/reinit_password.php?token='.$token.'">Réinitialiser mon mot de passe</a></p>
+								<h1>Mot de passe perdu ?</h1>
+								<p>Bonjour, vous avez indiqué que vous avez perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
+								<p><a href="localhost/site_commu/index.php?page=reinit_password&token='.$token.'">Réinitialiser mon mot de passe</a></p>
+								<p>Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>
 							</body>
 						</html>';
 			// envoi
 			$mail->Send();
-			echo 'localhost/site_commu/pages/reinit_password.php?token='.$token;
 			// if($mail->Send()) {
 			// 	$success = true;
 			// 	echo $token;
@@ -87,30 +84,26 @@ if(!empty($_POST)){
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Récupération de mot de passe</title>
-</head>
-<body>
 
-	<?php if(isset($success)):?>
-		<p style="color:green;">Un email vient de vous être envoyé</p>
-
-	<?php elseif (count($errors) > 0): // Si j'ai des erreurs, je les affiche ?>		
-		<p style="color:red"><?=implode('<br>', $errors);?></p>
-	<?php endif;?>
-
-	<form method="post">
-		<p>
-			<label>Email</label>
-			<input type="email" name="email" required placeholder="votre@email.ici">
-		</p>
-		<p>
-			<input type="submit" value="Go" id="btnSub">
-		</p>
-	</form>
-
-</body>
-</html>
+<?php if(isset($success)):?>
+	<div class="alert alert-success">
+		Un email vient de vous être envoyé
+	</div>
+<?php elseif (count($errors) > 0): // Si j'ai des erreurs, je les affiche ?>		
+	<div class="alert alert-danger">
+		<?=implode('<br>', $errors);?>
+	</div>
+<?php endif;?>
+<div class="body-content">
+	<div class="module">
+		<form method="post">
+			<p>
+				<label>Email</label>
+				<input type="email" name="email" required placeholder="votre@email.ici">
+			</p>
+			<p>
+				<input type="submit" value="Go" id="btnSub" class="btn btn-block btn-primary">
+			</p>
+		</form>
+	</div>
+</div>

@@ -7,8 +7,17 @@ require './vendor/autoload.php';
 $errors = array(); // dans cette variable, je vais stocker mes erreurs
 // $maxFileSize = 3 * 1000 * 1000; // Limite à 3 Mo
 
+// email déjà dans la table ?
+$rqVerif = "SELECT COUNT(*) FROM users WHERE email = :email";
+$stmtVerif = $pdo->prepare($rqVerif);
+$param1 = [':email' => $safe['email']];
+$stmtVerif->execute($param1);
+$exist = $stmtVerif->fetchColumn();
+
 // Le point d'exclamation devant une condition, veut dire NOT 
 // Ici => not empty $_POST d
+
+
 
 // les variables superglobales sont définies par défaut dans PHP, elles sont forcément un tableau
 if(!empty($_POST)){
@@ -21,13 +30,17 @@ if(!empty($_POST)){
 		$errors[] = 'Votre adresse email est invalide';
 	}
 
+	if(!$exist) {
+		$errors[] = 'Email déjà utilisé';
+	}
+
 	if(empty($safe['password'])) {
 		$errors[] = 'Le mot de passe est requis';
 	}
 	
 	if(!verifPassword($safe['password']))
 	{
-		$errors[] = 'Le format du mot de passe est incorrect';
+		$errors[] = 'Le mot de passe doit comporter minimum 8 caractères, dont au moins une majuscule et un chiffre';
 	}
 
 	if(strlen($safe['password']) < 7){
@@ -170,13 +183,13 @@ if(!empty($_POST)){
 					<input type="text" name="name" placeholder="Votre Nom" id="name" minlength="2" value="<?php if(count($errors) > 0) { echo $safe['name']; } ?>" >
 				</p>
 				<p>
-					<input type="text" name="firstname" placeholder="Votre Prénom" id="firstname" minlength="2" >
+					<input type="text" name="firstname" placeholder="Votre Prénom" id="firstname" minlength="2" value="<?php if(count($errors) > 0) { echo $safe['firstname']; } ?>" >
 				</p>
 				<p>
-					<input type="text" name="username" placeholder="Votre Pseudo" id="username" minlength="2" >
+					<input type="text" name="username" placeholder="Votre Pseudo" id="username" minlength="2" value="<?php if(count($errors) > 0) { echo $safe['username']; } ?>" >
 				</p>
 				<p>					
-					<input type="email" name="email" placeholder="Email" id="email" >
+					<input type="email" name="email" placeholder="Email" id="email" value="<?php if(count($errors) > 0) { echo $safe['email']; } ?>" >
 				</p>
 				<p>					
 					<input type="password" name="password" placeholder="Mot de passe" id="password" >
@@ -185,7 +198,7 @@ if(!empty($_POST)){
 					<input type="password" name="confirmpassword" placeholder="Confirmer mot de passe" id="confirmpassword" >
 				</p>
 				<p>
-					<input type="text" name="phone" placeholder="Votre Téléphone" id="phone" maxlength="10" >
+					<input type="text" name="phone" placeholder="Votre Téléphone" id="phone" maxlength="10" value="<?php if(count($errors) > 0) { echo $safe['phone']; } ?>" >
 				</p>
 				<p>
 					<input type="submit" value="Enregistrer" name="register" class="btn btn-block btn-primary" />

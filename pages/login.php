@@ -11,11 +11,11 @@ if(!empty($_POST)) {
 	$errors = [];
 
 	if(empty($safe['password'])) {
-		$errors[] = 'ihre Papieren bitte !';
+		$errors[] = 'Mot de Passe requis';
 	}
 	elseif(!verifPassword($safe['password']))
 	{
-		$errors[] = 'Le format du mot de passe est incorrect';
+		$errors[] = 'Le mot de passe doit comporter minimum 8 caractères, dont au moins une majuscule et un chiffre';
 	}
 
 
@@ -85,7 +85,7 @@ if(!empty($_POST)) {
 				<input type="submit" name="submit" value="Se Connecter" id="button" class="btn btn-block btn-primary">
 			</p>
 			<p class="badge badge-pill badge-primary" style="margin-left: 150px; background-image: linear-gradient(to bottom, #37c0ff, #0097dd);">
-				<a href="pages/lost_password.php" class=" text-decoration-none text-white">Mot de passe perdu ?</a>
+				<a href="index.php?page=lost_password" class=" text-decoration-none text-white">Mot de passe perdu ?</a>
 			</p>
 		</form>
 	</div>
