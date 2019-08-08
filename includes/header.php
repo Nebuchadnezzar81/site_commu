@@ -3,7 +3,7 @@
 $rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
 	 $rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
 	 $rq->execute();
-	 $user = $rq->fetchColumn();
+	 $user = $rq->fetch();
 
 ?>
 
@@ -26,7 +26,7 @@ $rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
 
 			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
 			<figure class="dash-avatar">
-				<img src="<?php if($user['avatar'] = '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
+				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
 
 
