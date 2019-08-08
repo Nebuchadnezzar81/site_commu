@@ -1,14 +1,4 @@
-<?php  
-
-$rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
-	 $rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
-	 $rq->execute();
-	 $user = $rq->fetch();
-
-?>
-
-
-	<div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,.5); height: 150px;">
+  	<div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,.5); height: 150px;">
 
 		<ul class="nav justify-content-center" style="margin: -20px;">
 
@@ -23,6 +13,13 @@ $rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
 
 	<ul class="menu">
 		<?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
+
+			<?php
+						$rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
+				 $rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
+				 $rq->execute();
+				 $user = $rq->fetch();
+			?>
 
 			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
 			<figure class="dash-avatar">
