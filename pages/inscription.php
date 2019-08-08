@@ -161,7 +161,7 @@ if(!empty($_POST)){
 							</div>
 						<?php elseif(!empty($_POST) && count($errors) == 0): // Fomulaire soumis sans erreur?>
 							<div class="alert alert-primary">
-								Félicitations, votre compte vient d'être créer avec succès, un email de confirmation vous a été envoyer
+								Félicitations, votre compte vient d'être créé avec succès, un email de confirmation vous a été envoyé
 							</div>	
 						<?php endif;?>
 				<h1>Création d'un Compte</h1>
