@@ -37,6 +37,7 @@
 
 			<li><a href="index.php?page=inscription">Inscription</a></li>
 			<li><a href="index.php?page=login">Connexion</a></li>
+			<li><a href="index.php?page=tchat">Mini-tchat</a></li>
 
 			<?php endif; ?>
 	</ul>
