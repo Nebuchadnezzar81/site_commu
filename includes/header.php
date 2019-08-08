@@ -21,7 +21,7 @@
 				 $user = $rq->fetch();
 			?>
 
-			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
+			<li class="m-2 badge badge-success text-wrap d-block">Bonjour <?= $_SESSION['username']; ?></li>
 			<figure class="dash-avatar">
 				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
