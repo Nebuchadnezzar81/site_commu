@@ -95,7 +95,7 @@
             <!-- colonne avec les membres connectés au chat -->
             <td valign="top" id="users-td">
                 <div id="users">
-                    <ul>Membres connecté·e·s :
+                    <ul>Membres connecté·e :
                         <li><em>
                             <?php 
                                 if(isset($_SESSION['id']))
@@ -105,6 +105,7 @@
                                 else echo '?'; 
                             ?>
                         </em></li>
+                        <li>Martin - <em>TeamLeader</em></li>
                         <li>Marion</li>
                         <li>Gaelle</li>
                         <li>Simon</li>

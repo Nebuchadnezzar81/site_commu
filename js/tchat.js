@@ -99,7 +99,7 @@ $(document).ready(function(){
 		//ajoute le message
 		$(".message").append("<span class='removable'><strong>"+ username +"</strong> : " + message + "</span><input type='reset' name='reset' value='Supprimer' class='button btn_delete'/><br>");
 		//vide le textarea
-		$("#message").html("");
+		$("#message").replaceWith("<textarea name='message' id='message' required></textarea>");
 
 	});//fin fonction
 });//FIN
