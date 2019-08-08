@@ -1,3 +1,12 @@
+<?php  
+
+$q = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
+	 $q->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
+	 $q->execute();
+	 $user = $q->fetchColumn();
+
+?>
+
 
 	<div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,.5); height: 150px;">
 
@@ -17,7 +26,7 @@
 
 			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
 			<figure class="dash-avatar">
-				<img src="<?php 'uploads/avatars/'.$user['avatar']; ?>">
+				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
 			<li><a href="index.php?page=dashboard">Mon Compte</a></li>
 			<li><a href="#">Modifier Identifiants</a></li>
@@ -26,8 +35,8 @@
 
 			<?php else: ?>
 
-			<li class="nav-item"><a class="nav-link" href="index.php?page=inscription"><button type="button" class="btn btn-primary">Inscription</button></a></li>
-			<li class="nav-item"><a class="nav-link" href="index.php?page=login"><button type="button" class="btn btn-primary">Connexion</button></a></li>
+			<li><a href="index.php?page=inscription">Inscription</a></li>
+			<li><a href="index.php?page=login">Connexion</a></li>
 
 			<?php endif; ?>
 	</ul>
