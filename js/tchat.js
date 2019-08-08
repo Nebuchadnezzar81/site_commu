@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 	var interval = setInterval(getMessages, 2000);
 
-
+//////////////////******************** on en est là*************************/////////////////////////////////
 
 	//bouton delete
 	// $('.btn_delete').click(function(e){
