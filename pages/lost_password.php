@@ -2,10 +2,10 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 // connexion BDD
-include 'includes/connexion.php';
+include '../includes/connexion.php';
 
 $errors = array();
 
