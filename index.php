@@ -25,6 +25,7 @@ else { $page = "accueil"; }
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div>
