@@ -1,0 +1,118 @@
+
+/* Pour que les liens ne soient pas soulignés */
+a {
+	text-decoration: none;
+}
+img {
+	vertical-align: middle;
+}
+/* Conteneur principal des blocs de la page */
+#container {
+	width: 80%;
+	margin: 50px auto;
+	padding: 2px 20px 20px 20px;
+	background: #fff;
+}
+
+/* Bloc contenant la zone de texte et bouton */
+.post_message  {
+	width: 95%;
+	margin: auto;
+	border: 1px solid #d2d2d2;
+	padding: 3px;
+}
+/* Zone de texte */
+.post_message #message {
+	width: 80%;
+}
+/* Bouton d'envoi */
+.post_message #post {
+	width: 18%;
+}
+
+/* La zone où sont affichés les messages
+et utilisateurs connectés */
+.chat {
+	width: 95%;
+	margin: 10px auto;
+	border: 1px solid ;
+	padding: 0px;
+	background-color: rgba(255,255,255,.5);
+}
+/* Bloc de chargement */
+.chat #loading {
+	margin-top: 50px;
+
+}
+/* Annonce */
+.chat #annonce {
+	margin: -6px -7px 5px -7px;
+	padding: 5px;
+	height:20px;
+	box-shadow: 8px 8px 12px #aaa;
+	-webkit-box-shadow: 0px 8px 15px #aaa;
+
+}
+/* Zone des messages */
+.chat #text-td {
+	margin: 0px; 
+	padding: 5px; 
+	width: 80%;  
+}
+/* Zone des utilisateurs connectés */
+.chat #users-td, .chat #users-chat-td {
+	margin: 0px; 
+	padding: 5px; 
+	width: 20%;
+	background-color: rgba(255,255,255,.5)
+
+}
+.chat #text, .chat #users, .chat #users-chat {
+	height:500px; 
+	overflow-y: auto;
+
+}
+
+/* Modification du statut */
+.status {
+	width: 95%;
+	border: none;
+	margin: auto;
+	text-align: right;
+}
+
+.info {
+	color:#098cc8 ;
+}
+
+/*mon css*/
+fieldset{
+	color:white;
+	font-size:18px;
+	font-style:strong;
+	width:100%;
+	height:400px;
+	text-align:center;
+	border-style:solid;
+	border-width:5px;
+	border-color:#098cc8;
+}
+
+.button{
+	color:white;
+	padding-top: 1px;
+	padding-left: 10px;
+	max-width: 970px;
+	height: 30px;
+	display:inline-block;
+	box-shadow:0 5px 5px 0 #098cc8, 0 10px 20px 0 #098cc8;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	border-radius:5px;
+	background-color:#098cc8;
+}
+
+.button:hover{
+	background-color: white;
+	color: #098cc8;
+}
