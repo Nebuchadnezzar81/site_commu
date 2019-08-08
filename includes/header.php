@@ -1,9 +1,9 @@
 <?php  
 
-$q = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
-	 $q->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
-	 $q->execute();
-	 $user = $q->fetchColumn();
+$rq = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
+	 $rq->bindValue(':id', $_SESSION['id'], PDO::PARAM_STR);
+	 $rq->execute();
+	 $user = $rq->fetchColumn();
 
 ?>
 
@@ -26,8 +26,10 @@ $q = $pdo->prepare('SELECT avatar FROM users WHERE id = :id');
 
 			<li class="m-2 badge badge-success text-wrap">Bonjour <?= $_SESSION['username']; ?></li>
 			<figure class="dash-avatar">
-				<img src="<?php if($user['avatar'] != '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
+				<img src="<?php if($user['avatar'] = '') { echo 'uploads/avatars/'.$user['avatar']; } ?>">
 			</figure>
+
+
 			<li><a href="index.php?page=dashboard">Mon Compte</a></li>
 			<li><a href="index.php?page=tchat">Mini-tchat</a></li>
 			<li><a href="#">Modifier Identifiants</a></li>
