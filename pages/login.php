@@ -1,14 +1,12 @@
 <?php 
 
-
-$message = '';
+$errors = [];
+// $message = '';
 //mot de passe conforme?
 
 if(!empty($_POST)) {
 
-	$safe = array_map('strip_tags', $_POST);
-
-	$errors = [];
+	$safe = array_map('strip_tags', $_POST);	
 
 	if(empty($safe['password'])) {
 		$errors[] = 'Mot de Passe requis';
@@ -22,11 +20,11 @@ if(!empty($_POST)) {
 	if(count($errors) === 0) {
 
 		//connexion BDD
-		include 'includes/connexion.php';
+		//include 'includes/connexion.php';
 		//requete
-		$rq = "SELECT id, email, username, password
-					 FROM users
-					 WHERE email = :email";
+		$rq = 	"SELECT id, email, username, password
+				FROM users
+				WHERE email = :email";
 		//preparation
 		$stmt = $pdo->prepare($rq);
 		//paramètres
@@ -49,16 +47,16 @@ if(!empty($_POST)) {
 				//securisation de la session
 				session_regenerate_id();
 
-				$message = "Youpeeeee";
+				$errors[] = "Youpeeeee";
 
 				header('Location: index.php');
 
 			}
-			else $message = 'mot de passe incorrect';
+			else $errors[] = 'mot de passe incorrect';
 		}
-		else $message = 'email inconnu';
+		else $errors[] = 'email inconnu';
 	}
-	else $message = 'mot de passe bidon';
+	else $errors[] = 'mot de passe bidon';
 } 
 
 
