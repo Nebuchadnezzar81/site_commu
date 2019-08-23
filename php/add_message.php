@@ -5,9 +5,6 @@ require_once '../includes/connexion.php';
 $safe = array_map('strip_tags', $_POST);
 $errors = [];
 
-// if(empty($safe['pseudo'])) {
-// 	$errors[] = 'Le pseudo doit être renseigné';
-// }
 if(empty($safe['message'])) {
 	$errors[] = 'Le message est vide';
 }
