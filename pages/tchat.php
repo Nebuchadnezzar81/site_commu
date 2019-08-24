@@ -73,7 +73,6 @@
                                 }
                             ?>
                             <input type="reset" name="reset" value="Annuler" id="annuler" class="button"/>
-                            <!-- <input type="submit" name="submit" value="Envoyez votre message !" id="msg-form" class="button"/> -->
                         </div>
                         <br>
                         

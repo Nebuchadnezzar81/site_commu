@@ -17,45 +17,33 @@ $(document).ready(function(){
 					var msg = $('<div></div>').addClass('message');
 
 					msg.append(
-						'<div>'+json[i].username+' ( '+ json[i].datetime_post + ' ) </div>' + 
+						'<div>'+ json[i].username +' ( '+ json[i].datetime_post + ' ) </div>' + 
 						'<div>' + json[i].message + '</div>'
 					);
+					//faire un if + 
+					var id_session = $("#user_id").text().trim();
+					console.log(json[i].user_id);
+					console.log(id_session);
+					if (id_session == json[i].user_id){
+						var btn_delete = $('<button></button>').addClass('btn_delete').attr('data-id', json[i].id).text('Supprimer');
+						
+						msg.append(btn_delete);
 
-					var btn_delete = $('<button></button>').addClass('btn_delete').attr('data-id', json[i].id).text('Supprimer');
+						var datetime_post = new Date(json[i].datetime_post);
+						var datetime_exp = new Date(datetime_post.getTime() + 5*60000);
+						var datetime_now = new Date();
 
-					msg.append(btn_delete);
+						if(datetime_now > datetime_exp || json[i].message === "Message supprimé"){
+							btn_delete.attr('disabled', true);
+						}			
+					}
 
 					$("#messages").append(msg);
 
 
-					var datetime_post = new Date(json[i].datetime_post);
-					var datetime_exp = new Date(datetime_post.getTime() + 5*60000);
-					var datetime_now = new Date();
-					console.log(datetime_now);
-					console.log(datetime_exp);
-					console.log(datetime_now > datetime_exp);
-
-					if(datetime_now > datetime_exp || json[i].message === "Message supprimé"){
-						btn_delete.attr('disabled', true);
-					}
-
-
-
-
-
-					// function disable_btn(){
-					// 	
-					// }
-					
-					// setTimeout(disable_btn, 5000);
-					
-
 
 				}//fin du for
-
-				
-				// console.log(json);
-			},
+			},//fin success
 
 			error: function(a,b,c){
 				console.log('erreur ajout msg : ' + a + ' / ' + b + ' / ' + c);
@@ -65,7 +53,7 @@ $(document).ready(function(){
 		}); //fin ajax
 	}//fin fonction
 	
-	//clic sur le bouton
+	///////////////////////////////clic sur le bouton
 	$('#msg-form').submit(function(e){
 
 		e.preventDefault();
@@ -106,8 +94,6 @@ $(document).ready(function(){
 
 	var interval = setInterval(getMessages, 2000);
 
-//////////////////******************** on en est là*************************/////////////////////////////////
-
 	//bouton delete
 	$("#screen").on("click", ".btn_delete", function(e) {
  		$(alert("Pouet"));
@@ -132,58 +118,5 @@ $(document).ready(function(){
 		});//fin ajax
  		
 	});
-
-
-
-	// function delMessage() {
-	// 	$.ajax({
-	// 		url: './php/del_message.php',
-	// 		methode : 'GET',
-	// 		dataType : 'json',
-	// 		success: function(json){
-
-	// 			$("#messages").replaceWith(
-	// 				'<div class="message">'+
-	// 					'<div>'+json[i].username+'</div>' + 
-	// 					'<div>Message supprimé</div>'+
-	// 				'</div>'
-	// 			);
-	// 		},
-
-	// 		error: function(a,b,c){
-	// 			console.log('erreur ajout msg : ' + a + ' / ' + b + ' / ' + c);
-	// 		}//fin error
-
-
-	// 	}); //fin ajax
-	// }//fin fonction
-
-
-	
-		//e.preventDefault();
-		//console.log("tentative de suppression");
-		//$('.message').replaceWith("<div>Le message a été supprimé</div>");
-	//});//fin bouton delete
-
-	// 	$(this).attr('data-id').remove();
-
-	// })
-
-	//suppression du bouton au bout de 5 min
-	// function delBtn() {
-
-	// }
-
-	//var intSupBtn = setInterval(delBtn, 300000);
-
-	// $('#msg-form').reset(function(e){
-
-	// 	e.preventDefault();
-	// 	//var user_id = $('#user_id').html();
-	// 	//console.log(user_id);
-	// 	var message = $('#message').val();
-		
-	// 	console.log(message);
-
 
 });//FIN
